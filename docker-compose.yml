@@ -1,0 +1,40 @@
+version: "3.8"
+
+services:
+  web:
+    build: .
+    container_name: faq_web
+    command: gunicorn --bind 0.0.0.0:8000 faq_project.wsgi:application
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - redis
+      - db
+    environment:
+      - DJANGO_SETTINGS_MODULE=faq_project.settings
+      - REDIS_URL=redis://redis:6379/1
+      - DATABASE_URL=postgres://postgres:postgres@db:5432/faq_db
+
+  redis:
+    image: redis:latest
+    container_name: faq_redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+  db:
+    image: postgres:13
+    container_name: faq_db
+    environment:
+      - POSTGRES_DB=faq_db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  redis_data:
+  postgres_data:
