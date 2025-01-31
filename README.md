@@ -32,39 +32,25 @@ git clone https://github.com/your-username/faq-project.git
 cd faq-project
 2. Set Up a Virtual Environment
 
-
 python -m venv venv
-On Windows:
 
+On Windows: venv\Scripts\activate
+On macOS/Linux: source venv/bin/activate
 
-
-venv\Scripts\activate
-On macOS/Linux:
-
-
-
-source venv/bin/activate
 3. Install Dependencies
-
 
 pip install -r requirements.txt
 Running the Project
 1. Run Redis
-Start a Redis server using Docker:
+Start a Redis server using Docker: docker run -d -p 6379:6379 redis
 
-
-
-docker run -d -p 6379:6379 redis
 2. Apply Migrations
-
 
 python manage.py migrate
 3. Create a Superuser
 
-
 python manage.py createsuperuser
 4. Start the Development Server
-
 
 python manage.py runserver
 5. Access the Application
@@ -78,27 +64,21 @@ API Usage
 Retrieve FAQs
 Default (English):
 
-
 GET /api/faqs/
 Hindi:
 
-
 GET /api/faqs/?lang=hi
 Bengali:
-
 
 GET /api/faqs/?lang=bn
 Docker Deployment
 1. Build and Run the Containers
 
-
 docker-compose up --build
 2. Apply Migrations
 
-
 docker-compose exec web python manage.py migrate
 3. Create a Superuser
-
 
 docker-compose exec web python manage.py createsuperuser
 4. Access the Application
