@@ -6,7 +6,7 @@ services:
     container_name: faq_web
     command: gunicorn --bind 0.0.0.0:8000 faq_project.wsgi:application
     volumes:
-      - .:/app
+      - ./staticfiles:/app/staticfiles
     ports:
       - "8000:8000"
     depends_on:
