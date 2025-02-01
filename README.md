@@ -62,15 +62,12 @@ API Endpoint: http://127.0.0.1:8000/api/faqs/
 
 API Usage
 Retrieve FAQs
-Default (English):
+Default (English): GET /api/faqs/
 
-GET /api/faqs/
-Hindi:
+Hindi: GET /api/faqs/?lang=hi
 
-GET /api/faqs/?lang=hi
-Bengali:
+Bengali: GET /api/faqs/?lang=bn
 
-GET /api/faqs/?lang=bn
 Docker Deployment
 1. Build and Run the Containers
 
@@ -81,6 +78,7 @@ docker-compose exec web python manage.py migrate
 3. Create a Superuser
 
 docker-compose exec web python manage.py createsuperuser
+
 4. Access the Application
 Home Page: http://localhost:8000/
 
